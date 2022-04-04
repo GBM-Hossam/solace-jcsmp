@@ -166,3 +166,59 @@ Binary Attachment:                      len=59
   20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
 
 
+2022-04-04 13:31:29,098 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
+2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
+2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
+2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
+2022-04-04 13:31:29,288 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
+2022-04-04 13:31:29,501 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
+2022-04-04 13:32:53,622 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
+2022-04-04 13:32:53,622 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
+2022-04-04 13:32:53,640 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
+  "id" : "1",
+  "from" : "Sameh",
+  "to" : "me"
+}]
+2022-04-04 13:32:53,655 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@6b46c43c]
+2022-04-04 13:32:53,662 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
+2022-04-04 13:32:53,673 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
+Priority:                               4
+Class Of Service:                       USER_COS_1
+DeliveryMode:                           PERSISTENT
+Message Id:                             1
+Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6e
+Binary Attachment:                      len=59
+  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
+  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
+  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
+  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
+
+
+2022-04-04 15:26:45,904 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
+2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
+2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
+2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
+2022-04-04 15:26:46,139 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
+2022-04-04 15:26:46,439 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
+2022-04-04 15:26:56,590 INFO c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Sending a transaction.
+2022-04-04 15:26:56,590 DEBUG c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Attempting to provision the topic '%s' on the appliance.%n
+2022-04-04 15:26:56,607 INFO c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Publish object.[{
+  "id" : "1",
+  "from" : "Sameh",
+  "to" : "me"
+}]
+2022-04-04 15:26:56,622 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@278ccba0]
+2022-04-04 15:26:56,630 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
+2022-04-04 15:26:56,640 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
+Priority:                               4
+Class Of Service:                       USER_COS_1
+DeliveryMode:                           PERSISTENT
+Message Id:                             1
+Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6f
+Binary Attachment:                      len=59
+  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
+  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
+  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
+  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
+
+

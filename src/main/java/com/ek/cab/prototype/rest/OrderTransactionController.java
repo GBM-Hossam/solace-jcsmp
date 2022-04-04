@@ -1,4 +1,4 @@
-package com.ek.cab.prototype.broker.rest;
+package com.ek.cab.prototype.rest;
 
 
 import com.ek.cab.prototype.broker.jcsmp.TransactionPublishEventHandler;
