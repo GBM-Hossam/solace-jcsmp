@@ -7,6 +7,7 @@ Protoype based on Soalce Java JCSMP APIs on Spring boot App. For further referen
 * [Soalce on Windows Docker](https://docs.solace.com/Solace-SW-Broker-Set-Up/Docker-Containers/Set-Up-Docker-Container-Windows.htm)
 * [Soalce Java JCSMP APIs](https://docs.solace.com/Solace-PubSub-Messaging-APIs/JCSMP-API/jcsmp-api-home.htm)
 * [Non-Exclusive Queue – Persistent QoS Round-Robin](https://solace.com/blog/consumer-groups-consumer-scaling-solace/)
+* All required administrative objects must be created on Solace before try out this prototype
 
 ![image](https://user-images.githubusercontent.com/25661435/161483756-44710de6-f919-4dde-a83a-e6893ea29aa4.png)
 
@@ -19,6 +20,6 @@ Protoype based on Soalce Java JCSMP APIs on Spring boot App. For further referen
   "to":"YY",
   "id":1
   } or use CURL command "" 
-API will trigger a message to be published on TOPIC, on other side consumer will consume the message from Queue 
+<br>API will trigger a message to be published on a topic(T/OrderTransaction), on other side consumer will consume the message from a queue (OrderTransactionQueue)
 and covert into Java Object ready for persistence !!
 * All Solace broker connectivity and fine-tuning properties are in application.properties
