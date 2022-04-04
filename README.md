@@ -2,9 +2,9 @@ Getting Started
 
 ### Reference Documentation
 
-For further reference, please consider the following sections:
+Protoype based on Soalce Java JCSMP APIs on Spring boot App. For further reference, please consider the following sections:
 
-* [Soalce on Windows Docker](https://docs.solace.com/Solace-SW-Broker-Set-Up/Docker-Containers/Set-Up-Docker-Container-Windows.html)
+* [Soalce on Windows Docker](https://docs.solace.com/Solace-SW-Broker-Set-Up/Docker-Containers/Set-Up-Docker-Container-Windows.htm)
 * [Soalce Java JCSMP APIs](https://docs.solace.com/Solace-PubSub-Messaging-APIs/JCSMP-API/jcsmp-api-home.htm)
 * [Non-Exclusive Queue – Persistent QoS Round-Robin](https://solace.com/blog/consumer-groups-consumer-scaling-solace/)
 
