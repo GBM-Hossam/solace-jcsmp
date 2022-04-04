@@ -19,7 +19,11 @@ Protoype based on Soalce Java JCSMP APIs on Spring boot App. For further referen
   "from":"XX",
   "to":"YY",
   "id":1
-  } or use CURL command "" 
+  } or use CURL command <br>
+
+curl http://localhost:8090/transaction/send -X POST -H "Content-type:application/json" -d '{"from":"XX","to":"YY","id": 1}'
+<br>curl http://localhost:8090/transaction/send -X POST -H "Content-type:application/json" -d '{"\"from"\":"\"XX"\","\"to"\":"\"YY"\","\"id"\":1}'" 
+
 <br>API will trigger a message to be published on a topic(T/OrderTransaction), on other side consumer will consume the message from a queue (OrderTransactionQueue)
 and covert into Java Object ready for persistence !!
 * All Solace broker connectivity and fine-tuning properties are in application.properties
