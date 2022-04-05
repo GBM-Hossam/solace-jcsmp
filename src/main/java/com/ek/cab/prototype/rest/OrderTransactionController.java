@@ -32,6 +32,8 @@ public class OrderTransactionController {
     private JCSMPSession session;
     @Autowired
     private Environment environment;
+    @Autowired
+    private XMLMessageProducer producer;
 
     public OrderTransactionController() {
     }
@@ -41,6 +43,17 @@ public class OrderTransactionController {
         return new TransactionPublishEventHandler();
     }
 
+    @Bean(destroyMethod = "close")
+    /*
+    * XMLMessageProducer provides a session-dependent interface for applications to send messages to a Solace appliance.
+    * An XMLMessageProducer instance is acquired from JCSMPSession. When acquired successfully, the instance of XMLMessageProducer
+    * holds a channel (connection) opened to the appliance. In general, it is an expensive operation to acquire an XMLMessageProducer instance;
+    * applications must cache this instance, and close it only when it is no longer required.
+    */
+    public XMLMessageProducer getXMLMessageProducer() throws JCSMPException {
+        return session.getMessageProducer(getPublishEventHandler());
+    }
+
     @PostMapping("/send")
     public void send(final @RequestBody Transaction transaction) throws JMSException, JCSMPException, JsonProcessingException {
         log.info("Sending a transaction.");
@@ -48,7 +61,7 @@ public class OrderTransactionController {
         final String topicName = environment.getProperty("solace.message.publisher.topic");
 
         log.debug("Attempting to provision the topic '%s' on the appliance.%n", topicName);
-        XMLMessageProducer prod = session.getMessageProducer(getPublishEventHandler());
+        XMLMessageProducer prod = getXMLMessageProducer();
 
         Topic tutorialTopic = JCSMPFactory.onlyInstance().createTopic(topicName);
 
@@ -64,7 +77,13 @@ public class OrderTransactionController {
         msg.setDeliveryMode(DeliveryMode.PERSISTENT);
         msg.setText(json);
         msg.setCorrelationKey(msg);
-        ///todo understand send
+        /*
+        When publishing direct messages, XMLMessageProducer operates in non-blocking mode, also known as streaming publish mode.
+        In other words, the send() does not block while waiting for the appliance to acknowledge delivery.
+        Applications receive notifications regarding error conditions of delivery through the callback handler JCSMPStreamingPublishEventHandler.
+        In this mode, the API returns control from the send operation as soon as the message has been written to the network socket's buffer.
+        When publishing persistent or non-persistent messages, XMLMessageProducer will block when the publisher window, or the network socket's buffer is full
+         */
         prod.send(msg, tutorialTopic);
     }
 }

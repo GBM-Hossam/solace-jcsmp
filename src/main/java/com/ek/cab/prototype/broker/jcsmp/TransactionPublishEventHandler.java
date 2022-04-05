@@ -7,17 +7,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TransactionPublishEventHandler implements JCSMPStreamingPublishCorrelatingEventHandler {
 
-    /// private static final Logger log = LogManager.getLogger(TransactionPublishEventHandler.class);
-
+    /*
+    https://docs.solace.com/API-Developer-Online-Ref-Documentation/java/com/solacesystems/jcsmp/JCSMPStreamingPublishCorrelatingEventHandler.html#handleError-java.lang.String-com.solacesystems.jcsmp.JCSMPException-long-
+     */
 
     @Override
     public void responseReceivedEx(Object key) {
-        ///todo ack or nack !!
-        log.debug("Producer received response for msg: " + key.toString());
+        log.info("Producer received response for msg: " + key.toString() + " msg has been ACKed");
     }
 
     @Override
     public void handleErrorEx(Object key, JCSMPException cause, long timestamp) {
-        log.debug("Producer received error for msg: %s@%s - %s%n", key.toString(), timestamp, cause);
+        log.error("Producer received error for msg has been NACKed: %s@%s - %s%n", key.toString(), timestamp, cause);
     }
 }

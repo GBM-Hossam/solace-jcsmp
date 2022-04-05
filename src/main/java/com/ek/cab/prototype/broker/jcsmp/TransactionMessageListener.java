@@ -24,10 +24,10 @@ public class TransactionMessageListener implements XMLMessageListener {
             try {
                 Transaction transaction = mapper.readValue(jsonObject, Transaction.class);
                 log.info("TextMessage received:[" + transaction.toString() + "]");
-                ///msg.ackMessage();
-                ///todo ack message
+                //ACK at the end after successfully processing required logic, in case of failure don't ACK !!!
+                msg.ackMessage();
             } catch (JsonProcessingException e) {
-                e.printStackTrace();
+              log.error(e.getMessage());
             }
 
         } else {

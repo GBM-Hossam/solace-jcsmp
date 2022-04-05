@@ -38,6 +38,7 @@ public class SolaceConnection {
         channelProps.setConnectRetries(Integer.parseInt(environment.getProperty("solace.java.connectRetries"))); // recommended settings?
         channelProps.setReconnectRetryWaitInMillis(Integer.parseInt(environment.getProperty("solace.java.reconnectRetryWaitInMillis")));// recommended settings?
 
+
         properties.setProperty(JCSMPProperties.CLIENT_CHANNEL_PROPERTIES, channelProps);
         final JCSMPSession session;
         session = JCSMPFactory.onlyInstance().createSession(properties, null, new SessionEventHandler() {
@@ -86,7 +87,16 @@ public class SolaceConnection {
         // Create a Flow be able to bind to and consume messages from the Queue.
         final ConsumerFlowProperties flow_prop = new ConsumerFlowProperties();
         flow_prop.setEndpoint(queue);
-        flow_prop.setAckMode(JCSMPProperties.MESSAGE_ACK_MODE);  //todo configure right ack mode
+
+        /**
+         * Allowed values are:
+         *
+         * JCSMPProperties.SUPPORTED_MESSAGE_ACK_AUTO
+         * JCSMPProperties.SUPPORTED_MESSAGE_ACK_CLIENT
+         * If message acknowledgement mode for the flow is SUPPORTED_MESSAGE_ACK_AUTO (the default behaviour),
+         * the call to XMLMessage.ackMessage() is ignored and a warning log is generated.
+         */
+        flow_prop.setAckMode(JCSMPProperties.SUPPORTED_MESSAGE_ACK_CLIENT);
 
         EndpointProperties endpoint_props = new EndpointProperties();
         endpoint_props.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);
