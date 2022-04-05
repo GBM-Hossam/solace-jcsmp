@@ -64,7 +64,7 @@ public class OrderTransactionController {
         msg.setDeliveryMode(DeliveryMode.PERSISTENT);
         msg.setText(json);
         msg.setCorrelationKey(msg);
-        // Delivery not yet confirmed. See ConfirmedPublish.java
+        ///todo understand send
         prod.send(msg, tutorialTopic);
     }
 }

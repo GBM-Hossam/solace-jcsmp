@@ -1,450 +1,178 @@
-2022-04-04 09:21:43,831 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:21:43,957 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:21:43,957 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:21:43,957 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:21:44,020 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:21:44,239 INFO c.e.c.p.e.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:21:57,286 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 09:21:57,286 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:21:57,305 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:21:57,327 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:21:57,338 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e68
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
+2022-04-05 15:27:21,779 INFO org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory [main] Server initialized with port: 8090
+2022-04-05 15:27:21,794 INFO org.eclipse.jetty.server.Server [main] jetty-9.4.29.v20200521; built: 2020-05-21T17:20:40.598Z; git: 77c232aed8a45c818fd27232278d9f95a021095e; jvm 1.8.0_202-b08
+2022-04-05 15:27:21,794 INFO org.eclipse.jetty.server.handler.ContextHandler.application [main] Initializing Spring embedded WebApplicationContext
+2022-04-05 15:27:21,794 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 625 ms
+2022-04-05 15:27:21,857 INFO org.eclipse.jetty.server.session [main] DefaultSessionIdManager workerName=node0
+2022-04-05 15:27:21,857 INFO org.eclipse.jetty.server.session [main] No SessionScavenger set, using defaults
+2022-04-05 15:27:21,857 INFO org.eclipse.jetty.server.session [main] node0 Scavenging every 600000ms
+2022-04-05 15:27:21,857 INFO org.eclipse.jetty.server.handler.ContextHandler [main] Started o.s.b.w.e.j.JettyEmbeddedWebAppContext@4aa3d36{application,/,[file:///C:/Users/Hossam/AppData/Local/Temp/jetty-docbase.1229691864544616735.8090/],AVAILABLE}
+2022-04-05 15:27:21,857 INFO org.eclipse.jetty.server.Server [main] Started @1521ms
+2022-04-05 15:27:21,889 DEBUG com.solacesystems.jcsmp.impl.JCSMPBasicSession [main] Client-1: 
+ {SSL_TRUSTED_COMMON_NAME_LIST, },
+ {session_name, JCSMPSession },
+ {ACK_EVENT_MODE, SUPPORTED_ACK_EVENT_MODE_PER_MSG },
+ {max_resends, 30 },
+ {gd_reconnect_fail_action, gd_reconnect_fail_action_auto_retry },
+ {JaasLoginContext, SolaceGSS },
+ {large_message_consume_timeout, 100000 },
+ {topic_dispatch, false },
+ {large_messaging, false },
+ {VIRTUAL_ROUTER_NAME,  },
+ {host, tcp://localhost:55554 },
+ {vpn_name_in_use,  },
+ {IGNORE_DUPLICATE_SUBSCRIPTION_ERROR, false },
+ {generate_sequence_numbers, false },
+ {SSL_KEY_STORE_NORMALIZED_FORMAT,  },
+ {localhost,  },
+ {pub_multi_thread, true },
+ {topic_dispatch_optimize_direct, false },
+ {SSL_CONNECTION_DOWNGRADE_TO,  },
+ {SSL_PROTOCOL, SSLv3,TLSv1,TLSv1.1,TLSv1.2 },
+ {sub_ack_window_size, 255 },
+ {generate_rcv_timestamps, false },
+ {SSL_TRUST_STORE,  },
+ {max_ad_flowctrl_retries, 15 },
+ {generate_send_timestamps, false },
+ {client_mode, false },
+ {AUTHENTICATION_SCHEME, AUTHENTICATION_SCHEME_BASIC },
+ {subscriber_network_priority, 1 },
+ {sub_ack_window_threshold, 60 },
+ {client_channel, 
+	stack: csmp.smf.tcp
+	smfPort: 55555
+	connectRetriesPerHost: 5
+	connectRetries: 1
+	connectTimeoutInMillis: 30000
+	readTimeoutInMillis: 10000
+	reconnectRetries: 20
+	reconnectRetryWaitInMillis: 3000
+	keepAliveIntervalInMillis: 3000
+	keepAliveLimit: 10
+	tcpNoDelay: true
+	ReceiveBuffer: 65536
+	sendBuffer: 65536
+ },
+ {pub_use_intermediate_direct_buf, true },
+ {SSL_CIPHER_SUITES, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA,SSL_RSA_WITH_3DES_EDE_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA,SSL_RSA_WITH_RC4_128_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 },
+ {MESSAGE_CALLBACK_ON_REACTOR, false },
+ {SSL_EXCLUDED_PROTOCOLS,  },
+ {SSL_TRUST_STORE_FORMAT, jks },
+ {JaasConfigFileReloadEnabled, false },
+ {IGNORE_SUBSCRIPTION_NOT_FOUND_ERROR, false },
+ {vpn_name, default },
+ {KRB_MUTUAL_AUTHENTICATION, true },
+ {ad_pub_router_windowed_ack, true },
+ {sub_ack_time, 1000 },
+ {application_description,  },
+ {NO_LOCAL, false },
+ {SSL_VALIDATE_CERTIFICATE, true },
+ {generate_sender_id, false },
+ {subscriber_local_priority, 1 },
+ {SSL_KEY_STORE_FORMAT, jks },
+ {KRB_SERVICE_NAME, solace },
+ {pub_ack_window_size, 1 },
+ {large_message_segment_size, 9437184 },
+ {SSL_VALIDATE_CERTIFICATE_DATE, true },
+ {connection_type, CONNECTION_TYPE_BASIC },
+ {pub_ack_time, 2000 },
+ {message_ack_mode, auto_ack },
+ {reapply_subscriptions, true },
+ {SSL_KEY_STORE,  },
+ {large_message_max_size, 209715200 },
+ {username, default },
+ {calculate_message_expiration, false }
+2022-04-05 15:27:21,889 DEBUG com.solacesystems.jcsmp.impl.flow.PubFlowManager [main] Client-1:470a9030: PubFlowManager created 
+2022-04-05 15:27:21,904 DEBUG com.solacesystems.jcsmp.impl.JCSMPBasicSession [main] Client-1: Session created: Deep-Blue/29476/00b10001/cG3oA5O1Id
+2022-04-05 15:27:21,920 DEBUG com.solacesystems.jcsmp.protocol.smf.SimpleSmfClient [main] Client-1: (smfclient 1) Closing socket
+2022-04-05 15:27:21,920 INFO com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [main] Client-1: Connecting to host 'orig=tcp://localhost:55554, scheme=tcp://, host=localhost, port=55554' (host 1 of 1, smfclient 1, attempt 1 of 1, this_host_attempt: 1 of 6)
+2022-04-05 15:27:21,920 DEBUG com.solacesystems.jcsmp.protocol.impl.ChannelOpStrategyClient [main] [JCSMPSession[default@tcp://localhost:55554] (0001)] Opening TcpClientChannel.
+2022-04-05 15:27:21,925 DEBUG com.solacesystems.jcsmp.protocol.smf.SimpleSmfClient [main] Client-1: Correlation tag not found in message, adding one: 1
+2022-04-05 15:27:21,925 DEBUG com.solacesystems.jcsmp.protocol.smf.SimpleSmfClient [main] Client-1: (smfclient 1) Attempting to open socket, host=localhost, port=55554
+2022-04-05 15:27:21,934 INFO com.solacesystems.jcsmp.impl.JCSMPBasicSession [main] Client-1: AdCtrl version changes: 2->4
+2022-04-05 15:27:21,934 DEBUG com.solacesystems.jcsmp.protocol.impl.ChannelOpStrategyClient [main] [JCSMPSession[default@tcp://localhost:55554] (0001)] Logged in. Router information:
+   ClientCtrlHeader[msgtype=0] {
+  uh=0;type=0;valuelength=10;value=[9.13.1.36]
+  uh=0;type=1;valuelength=21;value=[Mar  8 2022 17:40:04]
+  uh=0;type=2;valuelength=24;value=[Solace PubSub+ Standard]
+  uh=0;type=6;valuelength=8;value=[default]
+  uh=0;type=10;valuelength=15;value=[v:d6286bd92712]
+  uh=0;type=8;valuelength=65;value=[#P2P/v:d6286bd92712/mPuoLl8m/Deep-Blue/29476/00b10001/cG3oA5O1Id]
+  uh=0;type=12;valuelength=13;value=[d6286bd92712]
+  uh=0;type=9;valuelength=38;value=[19 ff d7 df 80 00 00 00 00 09 00 00 03 e8 01 00 00 00 06 00 02 00 00 00 09 01 c9 c3 80 03 00 00 00 09 00 a0 00 00 ]
+  uh=0;type=19;valuelength=15;value=[00 04 00 00 00 07 01 04 05 00 00 00 07 01 01 ]
+}
 
+2022-04-05 15:27:21,935 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [main] Client-1: Client channel (smfclient 1) starting KA timer
+2022-04-05 15:27:21,935 DEBUG com.solacesystems.jcsmp.protocol.impl.KeepaliveTimeoutHandler [main] Created new KA timer handler
+2022-04-05 15:27:21,936 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpChannel [main] Scheduling KA timer in 3000ms
+2022-04-05 15:27:21,936 DEBUG com.solacesystems.jcsmp.protocol.impl.ChannelOpStrategyClient [main] ** Got CLIENTCTRL, updating P2PINBOX to [#P2P/v:d6286bd92712/mPuoLl8m/Deep-Blue/29476/00b10001/cG3oA5O1Id/_]
+2022-04-05 15:27:21,936 INFO com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [main] Client-1: Connected to host 'orig=tcp://localhost:55554, scheme=tcp://, host=localhost, port=55554' (smfclient 1)
+2022-04-05 15:27:21,936 DEBUG com.solacesystems.jcsmp.protocol.impl.ChannelOpStrategyClient [main] ** Establishing topic sub [#P2P/v:d6286bd92712/mPuoLl8m/Deep-Blue/29476/00b10001/cG3oA5O1Id/>]
+2022-04-05 15:27:21,936 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [main] Client-1: doSmfSingleReq
+2022-04-05 15:27:21,937 DEBUG com.solacesystems.jcsmp.impl.client.ClientRequestResponse [main] Starting request timer (SMP-EstablishP2pSub) (10000 ms)
+2022-04-05 15:27:21,940 DEBUG com.solacesystems.jcsmp.impl.client.ClientRequestResponse [Context_1_ReactorThread] Stopping request timer (SMP-EstablishP2pSub)
+2022-04-05 15:27:21,998 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [main] Client-1: doSmfSharedReq (smfclient 1) try=0 / max=21 
 
-2022-04-04 09:24:02,362 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:24:02,535 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:24:02,535 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:24:02,535 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:24:02,552 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:24:02,770 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:24:09,511 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 09:24:09,511 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:24:09,528 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:24:09,540 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@64aac171]
-2022-04-04 09:24:09,546 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:24:09,556 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e69
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 09:25:28,581 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:25:28,721 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:25:28,721 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:25:28,721 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:25:28,743 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:25:28,953 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:25:35,757 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 09:29:16,446 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:29:16,604 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:29:16,604 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:29:16,604 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:29:16,625 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:29:16,842 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:29:20,341 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 09:29:20,341 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:29:20,365 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:29:20,378 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@58d1c757]
-2022-04-04 09:29:20,382 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:29:20,388 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6a
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 09:44:22,361 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 09:44:22,362 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:44:22,362 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:44:22,378 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=2,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@5616323d]
-2022-04-04 09:44:22,379 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:44:22,380 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             2
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6b
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 09:46:30,023 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:46:30,180 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:46:30,180 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:46:30,180 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:46:30,193 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:46:30,403 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:51:55,347 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 09:51:55,502 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 09:51:55,502 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 09:51:55,502 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 09:51:55,511 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 09:51:55,738 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 09:52:47,398 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-4] Sending a transaction.
-2022-04-04 09:52:47,398 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-4] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:52:47,414 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-4] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:52:47,427 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@eaa4b66]
-2022-04-04 09:52:47,435 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:52:47,446 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6c
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 09:57:01,051 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-3] Sending a transaction.
-2022-04-04 09:57:01,052 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-3] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 09:57:01,052 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-3] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 09:57:01,061 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=2,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@6db4c3]
-2022-04-04 09:57:01,061 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 09:57:01,062 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             2
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6d
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 13:31:29,098 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 13:31:29,272 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 13:31:29,288 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 13:31:29,501 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 13:32:53,622 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Sending a transaction.
-2022-04-04 13:32:53,622 DEBUG c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 13:32:53,640 INFO c.e.c.p.b.r.OrderTransactionController [http-nio-8090-exec-2] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 13:32:53,655 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@6b46c43c]
-2022-04-04 13:32:53,662 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 13:32:53,673 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6e
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 15:26:45,904 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 15:26:46,123 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 15:26:46,139 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 15:26:46,439 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 15:26:56,590 INFO c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Sending a transaction.
-2022-04-04 15:26:56,590 DEBUG c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 15:26:56,607 INFO c.e.c.p.b.r.OrderTransactionController [qtp1884387196-195] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 15:26:56,622 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@278ccba0]
-2022-04-04 15:26:56,630 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 15:26:56,640 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e6f
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 16:23:45,348 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:getSolaceSession
-2022-04-04 16:23:45,534 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] inside:consumerConnection
-2022-04-04 16:23:45,534 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] All required capabilities supported!
-2022-04-04 16:23:45,534 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to provision the queue '%s' on the appliance.%n
-2022-04-04 16:23:45,554 DEBUG c.e.c.p.b.j.TransactionMessageListener [main] Attempting to bind to the queue '%s' on the appliance.%n
-2022-04-04 16:23:45,800 INFO c.e.c.p.a.EkSolaceSpringJcsmpApplication [main] start App.....
-2022-04-04 16:45:31,185 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-199] Sending a transaction.
-2022-04-04 16:45:31,185 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-199] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:45:31,207 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-199] Publish object.[{
-  "id" : null,
-  "from" : "linuxize",
-  "to" : null
-}]
-2022-04-04 16:45:31,221 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=1,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=63,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@7e4638fb]
-2022-04-04 16:45:31,227 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=linuxize, to=null)]
-2022-04-04 16:45:31,232 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             1
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e70
-Binary Attachment:                      len=63
-  1d 00 3f 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..?{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 6c 69 6e 75 78 69    7a 65 22 2c 0d 0a 20 20    ."linuxize",....
-  22 74 6f 22 20 3a 20 6e    75 6c 6c 0d 0a 7d 00       "to".:.null..}.
-
-
-2022-04-04 16:45:39,768 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-175] Sending a transaction.
-2022-04-04 16:45:39,768 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-175] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:45:39,768 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-175] Publish object.[{
-  "id" : null,
-  "from" : "linuxize",
-  "to" : null
-}]
-2022-04-04 16:45:39,788 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=2,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=63,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@7081c943]
-2022-04-04 16:45:39,789 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=linuxize, to=null)]
-2022-04-04 16:45:39,789 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             2
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e71
-Binary Attachment:                      len=63
-  1d 00 3f 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..?{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 6c 69 6e 75 78 69    7a 65 22 2c 0d 0a 20 20    ."linuxize",....
-  22 74 6f 22 20 3a 20 6e    75 6c 6c 0d 0a 7d 00       "to".:.null..}.
-
-
-2022-04-04 16:47:51,007 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-174] Sending a transaction.
-2022-04-04 16:47:51,007 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-174] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:47:51,007 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-174] Publish object.[{
-  "id" : null,
-  "from" : "linuxize",
-  "to" : null
-}]
-2022-04-04 16:47:51,018 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=3,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=63,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@74be538b]
-2022-04-04 16:47:51,019 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=linuxize, to=null)]
-2022-04-04 16:47:51,020 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             3
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e72
-Binary Attachment:                      len=63
-  1d 00 3f 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..?{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 6c 69 6e 75 78 69    7a 65 22 2c 0d 0a 20 20    ."linuxize",....
-  22 74 6f 22 20 3a 20 6e    75 6c 6c 0d 0a 7d 00       "to".:.null..}.
-
-
-2022-04-04 16:48:54,526 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-193] Sending a transaction.
-2022-04-04 16:48:54,526 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-193] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:48:54,526 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-193] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 16:48:54,543 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=4,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@31bcc378]
-2022-04-04 16:48:54,543 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 16:48:54,544 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             4
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e73
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 16:49:15,475 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-197] Sending a transaction.
-2022-04-04 16:49:15,475 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-197] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:49:15,475 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-197] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "me"
-}]
-2022-04-04 16:49:15,487 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=5,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=59,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@7e72b454]
-2022-04-04 16:49:15,487 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=me)]
-2022-04-04 16:49:15,488 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             5
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e74
-Binary Attachment:                      len=59
-  1d 00 3b 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..;{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 6d 65 22 0d    0a 7d 00                   .:."me"..}.
-
-
-2022-04-04 16:52:07,823 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-175] Sending a transaction.
-2022-04-04 16:52:07,823 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-175] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:52:07,823 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-175] Publish object.[{
-  "id" : null,
-  "from" : "Sameh",
-  "to" : null
-}]
-2022-04-04 16:52:07,831 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=6,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=60,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@47b108]
-2022-04-04 16:52:07,831 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=Sameh, to=null)]
-2022-04-04 16:52:07,832 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             6
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e75
-Binary Attachment:                      len=60
-  1d 00 3c 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..<{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 53 61 6d 65 68 22    2c 0d 0a 20 20 22 74 6f    ."Sameh",...."to
-  22 20 3a 20 6e 75 6c 6c    0d 0a 7d 00                ".:.null..}.
-
-
-2022-04-04 16:52:13,584 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-171] Sending a transaction.
-2022-04-04 16:52:13,584 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-171] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:52:13,584 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-171] Publish object.[{
-  "id" : null,
-  "from" : "Sameh",
-  "to" : null
-}]
-2022-04-04 16:52:13,591 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=7,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=60,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@6639880]
-2022-04-04 16:52:13,591 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=Sameh, to=null)]
-2022-04-04 16:52:13,592 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             7
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e76
-Binary Attachment:                      len=60
-  1d 00 3c 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..<{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 53 61 6d 65 68 22    2c 0d 0a 20 20 22 74 6f    ."Sameh",...."to
-  22 20 3a 20 6e 75 6c 6c    0d 0a 7d 00                ".:.null..}.
-
-
-2022-04-04 16:52:34,440 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-193] Sending a transaction.
-2022-04-04 16:52:34,440 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-193] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:52:34,440 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-193] Publish object.[{
-  "id" : null,
-  "from" : "Sameh",
-  "to" : "Sameh"
-}]
-2022-04-04 16:52:34,451 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=8,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=63,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@51933c37]
-2022-04-04 16:52:34,452 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=null, from=Sameh, to=Sameh)]
-2022-04-04 16:52:34,453 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             8
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e77
-Binary Attachment:                      len=63
-  1d 00 3f 7b 0d 0a 20 20    22 69 64 22 20 3a 20 6e    ..?{...."id".:.n
-  75 6c 6c 2c 0d 0a 20 20    22 66 72 6f 6d 22 20 3a    ull,...."from".:
-  20 22 53 61 6d 65 68 22    2c 0d 0a 20 20 22 74 6f    ."Sameh",...."to
-  22 20 3a 20 22 53 61 6d    65 68 22 0d 0a 7d 00       ".:."Sameh"..}.
-
-
-2022-04-04 16:53:16,609 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-197] Sending a transaction.
-2022-04-04 16:53:16,609 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-197] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:53:16,609 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-197] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "Sameh"
-}]
-2022-04-04 16:53:16,626 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=9,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=62,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@3a28f245]
-2022-04-04 16:53:16,627 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=Sameh)]
-2022-04-04 16:53:16,627 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             9
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e78
-Binary Attachment:                      len=62
-  1d 00 3e 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..>{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 53 61 6d 65    68 22 0d 0a 7d 00          .:."Sameh"..}.
-
-
-2022-04-04 16:53:23,846 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-199] Sending a transaction.
-2022-04-04 16:53:23,846 DEBUG c.e.c.p.r.OrderTransactionController [qtp160945458-199] Attempting to provision the topic '%s' on the appliance.%n
-2022-04-04 16:53:23,846 INFO c.e.c.p.r.OrderTransactionController [qtp160945458-199] Publish object.[{
-  "id" : "1",
-  "from" : "Sameh",
-  "to" : "Sameh"
-}]
-2022-04-04 16:53:23,874 DEBUG c.e.c.p.b.j.TransactionPublishEventHandler [Context_1_ProducerDispatcher] Producer received response for msg: com.solacesystems.jcsmp.impl.JCSMPGenericXMLMessage[messageId=10,ackMessageId=0,prevId=0,CID_count=0,userData=,type=PERSISTENT,priority=4,redelivered=false,timeToLive=0,expiration=0,dmqEligible=false,topicSeqNum=null,metadataLen=0,contentLen=0,attLen=62,sendAttemptedOnce=false,ackImmediately=false,safeToRelease=false,retransmitting=false,sendCount=0@7dacbf9]
-2022-04-04 16:53:23,875 INFO c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] TextMessage received:[Transaction(id=1, from=Sameh, to=Sameh)]
-2022-04-04 16:53:23,875 DEBUG c.e.c.p.b.j.TransactionMessageListener [Context_1_ConsumerDispatcher] Message Dump:%n%s%n Destination:                            Topic 'T/OrderTransaction'
-Priority:                               4
-Class Of Service:                       USER_COS_1
-DeliveryMode:                           PERSISTENT
-Message Id:                             10
-Replication Group Message ID:           rmid1:12219-1e46f16d855-00000000-00000e79
-Binary Attachment:                      len=62
-  1d 00 3e 7b 0d 0a 20 20    22 69 64 22 20 3a 20 22    ..>{...."id".:."
-  31 22 2c 0d 0a 20 20 22    66 72 6f 6d 22 20 3a 20    1",...."from".:.
-  22 53 61 6d 65 68 22 2c    0d 0a 20 20 22 74 6f 22    "Sameh",...."to"
-  20 3a 20 22 53 61 6d 65    68 22 0d 0a 7d 00          .:."Sameh"..}.
-
-
+2022-04-05 15:27:22,010 DEBUG com.solacesystems.jcsmp.impl.client.ClientRequestResponse [main] Client-1: Starting request timer (ADCTRL-Provision) (10000 ms)
+2022-04-05 15:27:22,011 DEBUG com.solacesystems.jcsmp.protocol.impl.SmfUhUtil [Context_1_ReactorThread] Ignored one or more unknown parameters in SMF header.
+2022-04-05 15:27:22,011 DEBUG com.solacesystems.jcsmp.impl.client.ClientRequestResponse [Context_1_ReactorThread] Client-1: Stopping request timer (ADCTRL-Provision)
+2022-04-05 15:27:22,014 INFO com.solacesystems.jcsmp.impl.SessionModeSupport [main] Client-1: (Client name: Deep-Blue/29476/00b10001/cG3oA5O1Id   Local addr: 127.0.0.1 Local port: 58857   Remote addr: localhost  Remote port: 55554) - Error Response (400) - Already Exists
+2022-04-05 15:27:22,015 TRACE com.solacesystems.jcsmp.impl.JCSMPBasicSession [main] Client-1: waiting for session reconnect done, sessionID= JCSMPSession[default@tcp://localhost:55554] (0001), called from createFlow
+2022-04-05 15:27:22,017 DEBUG com.solacesystems.jcsmp.impl.RequestResponseTask [main] RequestResponseTask ([BRT resource=OrderTransactionQueue existingFH=null flowType=CONSUMER counter=0]) startTimer 
+2022-04-05 15:27:22,019 DEBUG com.solacesystems.jcsmp.protocol.impl.SmfUhUtil [Context_1_ReactorThread] Ignored one or more unknown parameters in SMF header.
+2022-04-05 15:27:22,019 DEBUG com.solacesystems.jcsmp.impl.flow.SubFlowManagerImpl [Context_1_ReactorThread] Client-1: Received AdCtrlMes, corrtag: 4
+2022-04-05 15:27:22,019 DEBUG com.solacesystems.jcsmp.impl.flow.BindRequestTask [Context_1_ReactorThread] Client-1: Executing response handler.
+2022-04-05 15:27:22,019 DEBUG com.solacesystems.jcsmp.impl.RequestResponseTask [Context_1_ReactorThread] RequestResponseTask ([BRT resource=OrderTransactionQueue existingFH=null flowType=CONSUMER counter=0]) cancelTimer 
+2022-04-05 15:27:22,024 DEBUG com.solacesystems.jcsmp.protocol.nio.impl.ConsumerNotificationDispatcher [Context_1_ConsumerDispatcher] Consumer dispatcher thread starts
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.timers.SubAckTimedTask [Context_1_ReactorThread] Creating SubAckTimedTask.
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [Context_1_ReactorThread] Flow 0: Clear AD timer
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.flow.BindRequestTask [Context_1_ReactorThread] Client-1: Got OK bindresponse, flowName=null, flowId=98, QueueAccessType=NON_EXCLUSIVE, explicitlyActive=false
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.flow.SubFlowManagerImpl [Context_1_ReactorThread] Client-1: regActiveFlow id=98
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.flow.SubFlowManagerImpl [Context_1_ReactorThread] Client-1: addManagedFlow Flowid=98
+2022-04-05 15:27:22,026 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [main] Client-1:SubFlow-98: Flow 98: getWindowSize()=255
+2022-04-05 15:27:22,027 DEBUG com.solacesystems.jcsmp.impl.flow.FlowSmfUtil [main] tpCreateAck: flow_d: 98, TpMsgId: 0, windowSz: 255
+2022-04-05 15:27:22,027 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [main] Client-1:SubFlow-98: tpCreateAck: flow_d: 98, tt_lastInOrderTpMsg: 0, tt_windowSz: 255
+2022-04-05 15:27:22,027 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [main] Client-1:SubFlow-98: Start flow, force ack>>> flow=98, tp=0, ws=255
+2022-04-05 15:27:22,092 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [main] Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-05 15:27:22,233 INFO org.eclipse.jetty.server.handler.ContextHandler.application [main] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-05 15:27:22,233 INFO org.springframework.web.servlet.DispatcherServlet [main] Initializing Servlet 'dispatcherServlet'
+2022-04-05 15:27:22,233 INFO org.springframework.web.servlet.DispatcherServlet [main] Completed initialization in 0 ms
+2022-04-05 15:27:22,249 INFO org.eclipse.jetty.server.AbstractConnector [main] Started ServerConnector@31500940{HTTP/1.1, (http/1.1)}{0.0.0.0:8090}
+2022-04-05 15:27:22,249 INFO org.springframework.boot.web.embedded.jetty.JettyWebServer [main] Jetty started on port(s) 8090 (http/1.1) with context path '/'
+2022-04-05 15:27:22,270 INFO com.ek.cab.prototype.application.EkSolaceSpringJcsmpApplication [main] Started EkSolaceSpringJcsmpApplication in 1.363 seconds (JVM running for 1.92)
+2022-04-05 15:27:22,272 INFO com.ek.cab.prototype.application.EkSolaceSpringJcsmpApplication [main] start App.....
+2022-04-05 15:27:24,981 DEBUG com.solacesystems.jcsmp.protocol.impl.KeepaliveTimeoutHandler [Context_1_ReactorThread] Keepalive Timeout expired.
+2022-04-05 15:27:24,981 DEBUG com.solacesystems.jcsmp.protocol.impl.KeepaliveTimeoutHandler [Context_1_ReactorThread] Sending keepalive message (1/10)
+2022-04-05 15:27:24,982 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpChannel [Context_1_ReactorThread] Scheduling KA timer in 3000ms
+2022-04-05 15:27:25,986 DEBUG com.solacesystems.jcsmp.impl.ReconnectFreqManager [Context_1_ReactorThread] Client-1: Timer expiry: checking reconnect counter.
+2022-04-05 15:27:25,986 DEBUG com.solacesystems.jcsmp.impl.ReconnectFreqManager [Context_1_ReactorThread] Client-1: Reconnect frequency OK: count=1
+2022-04-05 15:27:27,998 DEBUG com.solacesystems.jcsmp.protocol.impl.KeepaliveTimeoutHandler [Context_1_ReactorThread] Keepalive Timeout expired.
+2022-04-05 15:27:27,998 DEBUG com.solacesystems.jcsmp.protocol.impl.KeepaliveTimeoutHandler [Context_1_ReactorThread] Sending keepalive message (1/10)
+2022-04-05 15:27:27,998 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpChannel [Context_1_ReactorThread] Scheduling KA timer in 3000ms
+2022-04-05 15:27:29,664 INFO org.eclipse.jetty.server.AbstractConnector [SpringContextShutdownHook] Stopped ServerConnector@31500940{HTTP/1.1, (http/1.1)}{0.0.0.0:8090}
+2022-04-05 15:27:29,665 INFO org.eclipse.jetty.server.session [SpringContextShutdownHook] node0 Stopped scavenging
+2022-04-05 15:27:29,666 INFO org.eclipse.jetty.server.handler.ContextHandler.application [SpringContextShutdownHook] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2022-04-05 15:27:29,666 INFO org.eclipse.jetty.server.handler.ContextHandler [SpringContextShutdownHook] Stopped o.s.b.w.e.j.JettyEmbeddedWebAppContext@4aa3d36{application,/,[file:///C:/Users/Hossam/AppData/Local/Temp/jetty-docbase.1229691864544616735.8090/],UNAVAILABLE}
+2022-04-05 15:27:29,667 INFO org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2022-04-05 15:27:29,667 TRACE com.solacesystems.jcsmp.impl.JCSMPBasicSession [SpringContextShutdownHook] Client-1: waiting for session reconnect done, sessionID= JCSMPSession[default@tcp://localhost:55554] (0001), called from close
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: pauseFlowInternally=false
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: _startState=STOPPED
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: Clear AD timer
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: Clear AD timer
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: window size 0 due to startState=STOPPED
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: Flow 98: getWindowSize()=0
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowSmfUtil [SpringContextShutdownHook] tpCreateAck: flow_d: 98, TpMsgId: 0, windowSz: 0
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.flow.FlowHandleImpl [SpringContextShutdownHook] Client-1:SubFlow-98: tpCreateAck: flow_d: 98, tt_lastInOrderTpMsg: 0, tt_windowSz: 0
+2022-04-05 15:27:29,668 DEBUG com.solacesystems.jcsmp.impl.queues.UnackedMessageList2 [SpringContextShutdownHook] UNACKLIST-ack>>> reason=flow-closing flow=98
+2022-04-05 15:27:29,670 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [SpringContextShutdownHook] Client-1: sendUnbindRequest (smfclient 1) sendAdCtrlRequest Response 0 for flowId 98
+2022-04-05 15:27:29,670 DEBUG com.solacesystems.jcsmp.impl.RequestResponseTask [SpringContextShutdownHook] RequestResponseTask ([UBRT resource=OrderTransactionQueue flowId=98 counter=0]) startTimer 
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.impl.flow.SubFlowManagerImpl [Context_1_ReactorThread] Client-1: Received AdCtrlMes, corrtag: 5
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.impl.flow.UnbindRequestTask [Context_1_ReactorThread] Client-1: Executing response handler.
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.impl.RequestResponseTask [Context_1_ReactorThread] RequestResponseTask ([UBRT resource=OrderTransactionQueue flowId=98 counter=0]) cancelTimer 
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.impl.flow.UnbindRequestTask [Context_1_ReactorThread] Client-1: Got OK unbindresponse, flowId=98
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.impl.flow.SubFlowManagerImpl [SpringContextShutdownHook] Client-1: SubFlowManagerImpl closing... close 0 flows
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [SpringContextShutdownHook] Client-1: Client channel (smfclient 1) stopping KA timer
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.protocol.impl.TcpChannel [SpringContextShutdownHook] Canceled KA timer
+2022-04-05 15:27:29,671 INFO com.solacesystems.jcsmp.protocol.impl.TcpClientChannel [SpringContextShutdownHook] Client-1: Channel Closed (smfclient 1)
+2022-04-05 15:27:29,671 DEBUG com.solacesystems.jcsmp.protocol.smf.SimpleSmfClient [SpringContextShutdownHook] Client-1: Local addr: 127.0.0.1 Local port: 58857   Remote addr: localhost  Remote port: 55554(smfclient 1) Closing socket
+2022-04-05 15:27:29,672 DEBUG com.solacesystems.jcsmp.impl.JCSMPBasicSession [SpringContextShutdownHook] Client-1: JCSMPSession[default@tcp://localhost:55554] (0001)closed

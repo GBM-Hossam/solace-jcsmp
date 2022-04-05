@@ -2,8 +2,7 @@ package com.ek.cab.prototype.broker;
 
 import com.ek.cab.prototype.broker.jcsmp.TransactionMessageListener;
 import com.solacesystems.jcsmp.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +12,11 @@ import org.springframework.core.env.Environment;
 import javax.jms.ConnectionFactory;
 
 @Configuration
+@Slf4j
 @PropertySource({"classpath:application.properties"})
 public class SolaceConnection {
 
-    private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
+    /// private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
     @Autowired
     private TransactionMessageListener transactionListener;
     @Autowired
@@ -33,10 +33,10 @@ public class SolaceConnection {
         properties.setProperty(JCSMPProperties.REAPPLY_SUBSCRIPTIONS, true);  // subscribe Direct subs after reconnect
 
         JCSMPChannelProperties channelProps = new JCSMPChannelProperties();
-        channelProps.setReconnectRetries(Integer.parseInt(environment.getProperty("solace.java.reconnectRetries")));      // recommended settings
-        channelProps.setConnectRetriesPerHost(Integer.parseInt(environment.getProperty("solace.java.connectRetriesPerHost")));  // recommended settings
-        channelProps.setConnectRetries(Integer.parseInt(environment.getProperty("solace.java.connectRetries")));
-        channelProps.setReconnectRetryWaitInMillis(Integer.parseInt(environment.getProperty("solace.java.reconnectRetryWaitInMillis")));
+        channelProps.setReconnectRetries(Integer.parseInt(environment.getProperty("solace.java.reconnectRetries")));      // recommended settings?
+        channelProps.setConnectRetriesPerHost(Integer.parseInt(environment.getProperty("solace.java.connectRetriesPerHost")));  // recommended settings?
+        channelProps.setConnectRetries(Integer.parseInt(environment.getProperty("solace.java.connectRetries"))); // recommended settings?
+        channelProps.setReconnectRetryWaitInMillis(Integer.parseInt(environment.getProperty("solace.java.reconnectRetryWaitInMillis")));// recommended settings?
 
         properties.setProperty(JCSMPProperties.CLIENT_CHANNEL_PROPERTIES, channelProps);
         final JCSMPSession session;
@@ -86,7 +86,7 @@ public class SolaceConnection {
         // Create a Flow be able to bind to and consume messages from the Queue.
         final ConsumerFlowProperties flow_prop = new ConsumerFlowProperties();
         flow_prop.setEndpoint(queue);
-        flow_prop.setAckMode(JCSMPProperties.MESSAGE_ACK_MODE);
+        flow_prop.setAckMode(JCSMPProperties.MESSAGE_ACK_MODE);  //todo configure right ack mode
 
         EndpointProperties endpoint_props = new EndpointProperties();
         endpoint_props.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);

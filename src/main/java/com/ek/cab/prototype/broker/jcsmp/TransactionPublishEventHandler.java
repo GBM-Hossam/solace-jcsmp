@@ -2,16 +2,17 @@ package com.ek.cab.prototype.broker.jcsmp;
 
 import com.solacesystems.jcsmp.JCSMPException;
 import com.solacesystems.jcsmp.JCSMPStreamingPublishCorrelatingEventHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TransactionPublishEventHandler implements JCSMPStreamingPublishCorrelatingEventHandler {
 
-    private static final Logger log = LogManager.getLogger(TransactionPublishEventHandler.class);
+    /// private static final Logger log = LogManager.getLogger(TransactionPublishEventHandler.class);
 
 
     @Override
     public void responseReceivedEx(Object key) {
+        ///todo ack or nack !!
         log.debug("Producer received response for msg: " + key.toString());
     }
 

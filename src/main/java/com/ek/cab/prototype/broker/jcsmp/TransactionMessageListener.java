@@ -7,14 +7,14 @@ import com.solacesystems.jcsmp.BytesXMLMessage;
 import com.solacesystems.jcsmp.JCSMPException;
 import com.solacesystems.jcsmp.TextMessage;
 import com.solacesystems.jcsmp.XMLMessageListener;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class TransactionMessageListener implements XMLMessageListener {
 
-    private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
+    // private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
 
     @Override
     public void onReceive(BytesXMLMessage msg) {
@@ -25,6 +25,7 @@ public class TransactionMessageListener implements XMLMessageListener {
                 Transaction transaction = mapper.readValue(jsonObject, Transaction.class);
                 log.info("TextMessage received:[" + transaction.toString() + "]");
                 ///msg.ackMessage();
+                ///todo ack message
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
