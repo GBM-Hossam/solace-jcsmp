@@ -1,20 +1,17 @@
 package com.ek.cab.prototype.broker.jcsmp;
 
-import com.ek.cab.prototype.model.Transaction;
+import com.ek.cab.prototype.model.Event;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.solacesystems.jcsmp.BytesXMLMessage;
-import com.solacesystems.jcsmp.JCSMPException;
-import com.solacesystems.jcsmp.TextMessage;
-import com.solacesystems.jcsmp.XMLMessageListener;
-import lombok.extern.slf4j.Slf4j;
+import com.solacesystems.jcsmp.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class TransactionMessageListener implements XMLMessageListener {
 
-    // private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
+    private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
 
     @Override
     public void onReceive(BytesXMLMessage msg) {
@@ -22,19 +19,20 @@ public class TransactionMessageListener implements XMLMessageListener {
             String jsonObject = ((TextMessage) msg).getText();
             ObjectMapper mapper = new ObjectMapper();
             try {
-                Transaction transaction = mapper.readValue(jsonObject, Transaction.class);
-                log.info("TextMessage received:[" + transaction.toString() + "]");
+                Event event = mapper.readValue(jsonObject, Event.class);
+                log.info("event received:[" + event.toString() + "]");
                 //ACK at the end after successfully processing required logic, in case of failure don't ACK !!!
-                msg.ackMessage();
             } catch (JsonProcessingException e) {
-              log.error(e.getMessage());
+                log.error(e.getMessage());
             }
 
         } else {
-            log.info("Message received.");
+            SDTMap map = msg.getProperties();
+            log.info("Message received." + map.toString());
         }
-        log.debug("Message Dump:%n%s%n " + msg.dump());
-
+        msg.ackMessage();
+        /// log.debug("Message Dump:" + msg.dump());
+        /// log.debug("TopicSequenceNumber:" + msg.getTopicSequenceNumber());
     }
 
     @Override

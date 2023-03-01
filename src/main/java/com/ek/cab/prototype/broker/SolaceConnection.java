@@ -2,7 +2,8 @@ package com.ek.cab.prototype.broker;
 
 import com.ek.cab.prototype.broker.jcsmp.TransactionMessageListener;
 import com.solacesystems.jcsmp.*;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +13,11 @@ import org.springframework.core.env.Environment;
 import javax.jms.ConnectionFactory;
 
 @Configuration
-@Slf4j
 @PropertySource({"classpath:application.properties"})
 public class SolaceConnection {
 
-    /// private static final Logger log = LogManager.getLogger(TransactionMessageListener.class);
+    private static final Logger log = LogManager.getLogger(SolaceConnection.class);
+
     @Autowired
     private TransactionMessageListener transactionListener;
     @Autowired
@@ -52,7 +53,7 @@ public class SolaceConnection {
     }
 
     @Bean(destroyMethod = "close")
-    public FlowReceiver consumerConnection(final ConnectionFactory connectionFactory) throws JCSMPException {
+    public FlowReceiver queueConsumer(final ConnectionFactory connectionFactory) throws JCSMPException {
         log.debug("inside:consumerConnection");
 
         JCSMPSession session = getSolaceSession();
@@ -73,17 +74,18 @@ public class SolaceConnection {
 
 
         final String queueName = environment.getProperty("solace.message.consumer.queue");
-        log.debug("Attempting to provision the queue '%s' on the appliance.%n", queueName);
+
+        /// log.debug("Attempting to provision the queue '%s' on the appliance.%n", queueName);
         final EndpointProperties endpointProps = new EndpointProperties();
         // set queue permissions to "consume" and access-type to "exclusive"
         endpointProps.setPermission(EndpointProperties.PERMISSION_CONSUME);
-        endpointProps.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);
+        //endpointProps.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);
 
         final Queue queue = JCSMPFactory.onlyInstance().createQueue(queueName);
         // Actually provision it, and do not fail if it already exists
         session.provision(queue, endpointProps, JCSMPSession.FLAG_IGNORE_ALREADY_EXISTS);
 
-        log.debug("Attempting to bind to the queue '%s' on the appliance.%n", queueName);
+        ///log.debug("Attempting to bind to the queue '%s' on the appliance.%n", queueName);
         // Create a Flow be able to bind to and consume messages from the Queue.
         final ConsumerFlowProperties flow_prop = new ConsumerFlowProperties();
         flow_prop.setEndpoint(queue);
@@ -96,12 +98,56 @@ public class SolaceConnection {
          * If message acknowledgement mode for the flow is SUPPORTED_MESSAGE_ACK_AUTO (the default behaviour),
          * the call to XMLMessage.ackMessage() is ignored and a warning log is generated.
          */
-        flow_prop.setAckMode(JCSMPProperties.SUPPORTED_MESSAGE_ACK_CLIENT);
+        flow_prop.setAckMode(JCSMPProperties.MESSAGE_ACK_MODE);
 
         EndpointProperties endpoint_props = new EndpointProperties();
         endpoint_props.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);
 
         final FlowReceiver consumer = session.createFlow(transactionListener, flow_prop, endpoint_props);
+        ///consumer.start();
+        return consumer;
+    }
+
+    @Bean(destroyMethod = "close")
+    public FlowReceiver topicEndPointConsumer(final ConnectionFactory connectionFactory) throws JCSMPException {
+        log.debug("inside:topicEndPointConsumer");
+
+        JCSMPSession session = getSolaceSession();
+
+        final String topicEPName = environment.getProperty("solace.message.consumer.topicEP");
+        final String topicName = environment.getProperty("solace.message.publisher.topic");
+
+        final EndpointProperties endpointProps = new EndpointProperties();
+
+        // set queue permissions to "consume" and access-type to "exclusive"
+        endpointProps.setPermission(EndpointProperties.PERMISSION_CONSUME);
+        //endpointProps.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE); ///???
+
+        DurableTopicEndpoint topicEndpoint = JCSMPFactory.onlyInstance().createDurableTopicEndpoint(topicEPName);
+        Topic topic = JCSMPFactory.onlyInstance().createTopic(topicName);
+        // Actually provision it, and do not fail if it already exists
+        session.provision(topicEndpoint, endpointProps, JCSMPSession.FLAG_IGNORE_ALREADY_EXISTS);
+
+        // Create a Flow be able to bind to and consume messages from the TopicEndpoint.
+        final ConsumerFlowProperties consumerFlow_props = new ConsumerFlowProperties();
+        consumerFlow_props.setSelector(" ek_ChannelName = 'MWeb'");
+        consumerFlow_props.setEndpoint(topicEndpoint);
+        consumerFlow_props.setNewSubscription(topic);
+
+        /**
+         * Allowed values are:
+         *
+         * JCSMPProperties.SUPPORTED_MESSAGE_ACK_AUTO
+         * JCSMPProperties.SUPPORTED_MESSAGE_ACK_CLIENT
+         * If message acknowledgement mode for the flow is SUPPORTED_MESSAGE_ACK_AUTO (the default behaviour),
+         * the call to XMLMessage.ackMessage() is ignored and a warning log is generated.
+         */
+        consumerFlow_props.setAckMode(JCSMPProperties.SUPPORTED_MESSAGE_ACK_CLIENT);
+
+        EndpointProperties endpoint_props = new EndpointProperties();
+        endpoint_props.setAccessType(EndpointProperties.ACCESSTYPE_NONEXCLUSIVE);
+
+        final FlowReceiver consumer = session.createFlow(transactionListener, consumerFlow_props, endpoint_props);
         consumer.start();
         return consumer;
     }

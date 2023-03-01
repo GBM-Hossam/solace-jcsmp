@@ -2,7 +2,7 @@ package com.ek.cab.prototype.rest;
 
 
 import com.ek.cab.prototype.broker.jcsmp.TransactionPublishEventHandler;
-import com.ek.cab.prototype.model.Transaction;
+import com.ek.cab.prototype.model.Event;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,22 +45,24 @@ public class OrderTransactionController {
 
     @Bean(destroyMethod = "close")
     /*
-    * XMLMessageProducer provides a session-dependent interface for applications to send messages to a Solace appliance.
-    * An XMLMessageProducer instance is acquired from JCSMPSession. When acquired successfully, the instance of XMLMessageProducer
-    * holds a channel (connection) opened to the appliance. In general, it is an expensive operation to acquire an XMLMessageProducer instance;
-    * applications must cache this instance, and close it only when it is no longer required.
-    */
+     * XMLMessageProducer provides a session-dependent interface for applications to send messages to a Solace appliance.
+     * An XMLMessageProducer instance is acquired from JCSMPSession. When acquired successfully, the instance of XMLMessageProducer
+     * holds a channel (connection) opened to the appliance. In general, it is an expensive operation to acquire an XMLMessageProducer instance;
+     * applications must cache this instance, and close it only when it is no longer required.
+     */
     public XMLMessageProducer getXMLMessageProducer() throws JCSMPException {
         return session.getMessageProducer(getPublishEventHandler());
     }
 
     @PostMapping("/send")
-    public void send(final @RequestBody Transaction transaction) throws JMSException, JCSMPException, JsonProcessingException {
-        log.info("Sending a transaction.");
+    public void send(final @RequestBody Event event) throws JMSException, JCSMPException, JsonProcessingException {
+        log.info("Sending a event.");
 
         final String topicName = environment.getProperty("solace.message.publisher.topic");
 
         log.debug("Attempting to provision the topic '%s' on the appliance.%n", topicName);
+        ///log.debug("Recieved event.%n", event.toString());
+
         XMLMessageProducer prod = getXMLMessageProducer();
 
         Topic tutorialTopic = JCSMPFactory.onlyInstance().createTopic(topicName);
@@ -68,22 +70,18 @@ public class OrderTransactionController {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-
-        String json = ow.writeValueAsString(transaction);
+        String json = ow.writeValueAsString(event);
 
         log.info("Publish object.[" + json + "]");
 
-        final TextMessage msg = JCSMPFactory.onlyInstance().createMessage(TextMessage.class);
+        final TextMessage msg = prod.createTextMessage();
+
+        SDTMap map = prod.createMap();
         msg.setDeliveryMode(DeliveryMode.PERSISTENT);
+        map.putString("ek_ChannelName", event.getData().getEK_ChannelName());
+        msg.setProperties(map);
         msg.setText(json);
-        msg.setCorrelationKey(msg);
-        /*
-        When publishing direct messages, XMLMessageProducer operates in non-blocking mode, also known as streaming publish mode.
-        In other words, the send() does not block while waiting for the appliance to acknowledge delivery.
-        Applications receive notifications regarding error conditions of delivery through the callback handler JCSMPStreamingPublishEventHandler.
-        In this mode, the API returns control from the send operation as soon as the message has been written to the network socket's buffer.
-        When publishing persistent or non-persistent messages, XMLMessageProducer will block when the publisher window, or the network socket's buffer is full
-         */
+        msg.setCorrelationKey(event);  // correlation key for receiving ACKs
         prod.send(msg, tutorialTopic);
     }
 }

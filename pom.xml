@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.solacesystems</groupId>
             <artifactId>sol-jms</artifactId>
-            <version>10.14.0</version>
+            <version>10.13.1</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
